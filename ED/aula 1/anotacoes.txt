@@ -1,0 +1,10 @@
+04/03/2023
+----------
+Alocação de memória:
+stack -> de cima para baixo
+heap -> de baixo para cima
+* no meio há alocação das bibliotecas
+
+* a cada chamada de função, um bloco é criado para alocação
+  de suas variáveis, até mesmo em chamadas recursivas.
+----------
