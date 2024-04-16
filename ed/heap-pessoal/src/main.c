@@ -9,7 +9,7 @@ void print_array(int v[], int size) {
 }
 
 void teste_constroi() {
-    int v[] = {1,50,20,62,60,25,30}; 
+    int v[] = {1, 5, 7, 6, 8, 9, 10, 12, 13, 15, 11, 14};
     int size = sizeof(v)/sizeof(v[0]);
 
     constroi_heap(v, size);
