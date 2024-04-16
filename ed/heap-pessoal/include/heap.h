@@ -2,11 +2,6 @@
 #define __HEAP__
 #include <stdio.h>
 #include <stdlib.h>
-typedef struct {
-	int size;
-	void ** vector;
-} theap;
-
 int pai(int n);
 int f_esq(int n);
 int f_dir(int n);

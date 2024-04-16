@@ -42,9 +42,9 @@ void desce(int v[], int pos, int max_size) {
 
 /* percorre os pais a partir de um nó determinando se seu valor é menor que seu filho  */
 void sobe(int v[], int pos) {
-    while(v[pai(pos)] < v[pos]) {
+    if(v[pai(pos)] < v[pos] && pos > 0) {
         troca(&v[pai(pos)], &v[pos]);
-       	pos = pai(pos);
+	sobe(v, pai(pos));
     }
 }
 
@@ -75,8 +75,8 @@ int insere_elemento(int v[], int new_element, int max_size, int *size) {
 
     if(*size < max_size) {
 	v[*size] = new_element;
-	*size += 1;
 	sobe(v, *size);
+        *size += 1;
         ret = EXIT_SUCCESS;
     }
 
@@ -95,7 +95,6 @@ void altera_prioridade(int v[], int pos, int max_size, int value) {
 void heap_sort(int v[], int max_size) {
     for(int i = max_size-1; i >= 0; i--) {
 	troca(&v[i], &v[0]);
-	max_size--;
-	desce(v, i, max_size);
+	desce(v, 0, i);
     }    
 }
