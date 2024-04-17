@@ -56,8 +56,20 @@ void teste_extrai() {
     print_array(v, max_size);
 }
 
+//passou
+void teste_altera() {
+    int v[] = {1, 5, 7, 6, 8, 9, 10, 12, 13, 15, 11, 14};
+    int max_size = sizeof(v)/sizeof(v[0]);
+
+    constroi_heap(v, max_size);
+
+    altera_prioridade(v, 0, max_size, 4);
+
+    print_array(v, max_size);
+}
+
 int main() {
-    teste_extrai();
+    teste_altera();
 
     return EXIT_SUCCESS;
 }

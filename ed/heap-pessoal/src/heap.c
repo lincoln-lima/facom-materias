@@ -85,10 +85,14 @@ int insere_elemento(int v[], int new_element, int max_size, int *size) {
 
 /* realiza a alteração de um valor do vetor e a partir de seu nó, reajusta a heap */
 void altera_prioridade(int v[], int pos, int max_size, int value) {
-    v[pos] = value;
-
-    if(v[pos] > value) sobe(v, pos);
-    else if(v[pos] < value) desce(v, pos, max_size);
+    if(v[pos] < value) {
+        v[pos] = value;
+	sobe(v, pos);
+    }
+    else if(v[pos] > value) {
+	v[pos] = value;
+	desce(v, pos, max_size);
+    }
 }
 
 /* troca o primeiro elemento com o último, posiciando o maior ao fim, assim ordenando o vetor */
