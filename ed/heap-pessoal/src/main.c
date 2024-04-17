@@ -43,8 +43,21 @@ void teste_ordena() {
     print_array(v, size);
 }
 
+//passou
+void teste_extrai() {
+    int v[] = {1, 5, 7, 6, 8, 9, 10, 12, 13, 15, 11, 14};
+    int max_size = sizeof(v)/sizeof(v[0]);
+
+    constroi_heap(v, max_size);
+
+    extrai_max(v, &max_size);
+
+    printf("%d --> max-size\n", max_size);
+    print_array(v, max_size);
+}
+
 int main() {
-    teste_ordena();
+    teste_extrai();
 
     return EXIT_SUCCESS;
 }
