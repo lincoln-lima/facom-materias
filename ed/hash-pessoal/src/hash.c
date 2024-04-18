@@ -29,7 +29,7 @@ int insere(thash * hash, void * bucket) {
     }
     else {
 	//garante que a posição para alocação da estrutura esteja desocupada
-        while(hash->array[pos] != NULL || hash->array[pos] != hash->deleted)
+        while(hash->array[pos] != 0 || hash->array[pos] != hash->deleted)
 	    pos = (pos+1) % hash->max_size;
 	    // sondagem linear dos elementos
         
@@ -50,9 +50,9 @@ void * busca(thash * hash, char * key) {
     //criação do objeto para retorno
     void * ret = NULL; 
 
-    while(hash->array[pos] != NULL && ret == NULL) {
+    while(hash->array[pos] != 0 && ret == NULL) {
 	if(strcmp(hash->get_key((void *) hash->array[pos]), key) == 0)
-	    ret = (void *) *(hash->array[pos]);
+	    ret = (void *) hash->array[pos];
 	else
 	    pos = (pos+1) % hash->max_size;
     }
@@ -72,7 +72,7 @@ int constroi(thash * hash, int n_buckets, char * (* get_key)(void *)) {
 	//inicialização dos parâmetros necessários
 	hash->size = 0;
 	hash->max_size = n_buckets + 1;
-	hash->deleted = (uintptr_t) &(h->size);
+	hash->deleted = (uintptr_t) &(hash->size);
 	hash->get_key = get_key;
 
 	ret = EXIT_SUCCESS;
@@ -87,7 +87,7 @@ int remover(thash * hash, char * key) {
     int pos = hashing_function(key, SEED) % hash->max_size;
 
     //caso determinada posição esteja nula, o elemento não deve existir
-    while(hash->array[pos] != NULL) {
+    while(hash->array[pos] != 0) {
 	//compara a chave do registro com a chave informada na chamada da função
         if(strcmp(hash->get_key((void *) hash->array[pos]), key) == 0) {
 	    //diminui tamanho ocupado, libera a posição e diz que a mesma foi deletada
@@ -107,7 +107,7 @@ int remover(thash * hash, char * key) {
 void apaga(thash * hash) {
    //libera posição a posição do array
    for(int pos = 0; pos < hash->max_size; pos++)
-      free((void *) hash->array(pos));
+      free((void *) hash->array[pos]);
 
    //libera o array
    free(hash->array);

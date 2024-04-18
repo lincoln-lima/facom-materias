@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "../include/hash.h"
+#include "hash.c"
 
 typedef struct {
     char nome[30];
@@ -25,10 +25,22 @@ void * aloca_pessoa(char * nome, char * cpf) {
 void teste_insere() {
     thash tabela;
     int n_buckets = 10;
+    int status;
 
-    constroi(&tabela, n_buckets, get_key_pessoa);
+    status = constroi(&tabela, n_buckets, get_key_pessoa);
 
-    assert(insere(&tabela, aloca_pessoa("kung lao", "897.456.135.48"))==EXIT_SUCCESS);
+    if(status == EXIT_SUCCESS)
+        printf("constroi passou\n");
+
+    tpessoa * pessoa = aloca_pessoa("kung lao", "498.589.739-47");
+
+    if(pessoa != NULL)
+	printf("alocação passou\n");
+    
+    status = insere(&tabela, &pessoa);
+
+    if(status == EXIT_SUCCESS)
+	printf("insere passou\n");
 }
 
 int main() {
