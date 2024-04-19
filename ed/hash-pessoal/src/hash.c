@@ -29,7 +29,7 @@ int insere(thash * hash, void * bucket) {
     }
     else {
 	//garante que a posição para alocação da estrutura esteja desocupada
-        while(hash->array[pos] != 0 || hash->array[pos] != hash->deleted)
+        while(hash->array[pos] != 0 && hash->array[pos] != hash->deleted)
 	    pos = (pos+1) % hash->max_size;
 	    // sondagem linear dos elementos
         
@@ -51,7 +51,7 @@ void * busca(thash * hash, char * key) {
     void * ret = NULL; 
 
     while(hash->array[pos] != 0 && ret == NULL) {
-	if(strcmp(hash->get_key((void *) hash->array[pos]), key) == 0)
+	if(strcmp(hash->get_key((void *) hash->array[pos]), key) == 0) 
 	    ret = (void *) hash->array[pos];
 	else
 	    pos = (pos+1) % hash->max_size;
@@ -106,8 +106,10 @@ int remover(thash * hash, char * key) {
 //elimina todos os registros da tabela
 void apaga(thash * hash) {
    //libera posição a posição do array
-   for(int pos = 0; pos < hash->max_size; pos++)
-      free((void *) hash->array[pos]);
+    for(int pos = 0; pos < hash->max_size; pos++) {
+	if(hash->array[pos] != 0 && hash->array[pos] != hash->deleted)
+            free((void *) hash->array[pos]);
+    }
 
    //libera o array
    free(hash->array);

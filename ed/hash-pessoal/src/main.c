@@ -22,7 +22,7 @@ void * aloca_pessoa(char * nome, char * cpf) {
     return pessoa;
 }
 
-void teste_insere() {
+void teste() {
     thash tabela;
     int n_buckets = 10;
     int status;
@@ -37,14 +37,28 @@ void teste_insere() {
     if(pessoa != NULL)
 	printf("alocação passou\n");
     
-    status = insere(&tabela, &pessoa);
+    status = insere(&tabela, pessoa);
 
     if(status == EXIT_SUCCESS)
 	printf("insere passou\n");
+
+    tpessoa * pessoa_busca = busca(&tabela, "498.589.739-47");
+    
+    if(pessoa_busca != NULL)
+	printf("busca passou --> %s\n", pessoa_busca->nome);
+
+    status = remover(&tabela, "498.589.739-47");
+
+    if(status == EXIT_SUCCESS)
+        printf("remover passou\n");
+    
+    apaga(&tabela);
+
+    printf("apagar passou\n");
 }
 
 int main() {
-    teste_insere();
+    teste();
 
     return EXIT_SUCCESS;
 }
