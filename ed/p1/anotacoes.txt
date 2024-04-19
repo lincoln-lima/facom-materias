@@ -1,0 +1,33 @@
+heap é sempre balanceada
+
+complexidade (pior caso)
+log n --> sobe/desce
+o(log n) --> inserção, extrai_max, altera_prioridade
+o(n log n) --> heapsort
+-----------------------
+hash
+pior caso
+(tudo cheio)
+o(n) para todos, sendo n o número total de colisões
+
+caso médio
+(nem tudo cheio)
+o(c.1) como c uma constante
+
+o(1) melhor caso
+
+enderecamento estatico
+uma hash ruim que aponta para o mesmo bucket
+o(n) para percorrer a lista encadeada completamente
+-----------------------
+abb
+
+pior caso
+degenerada
+o(n) para inserção, busca e remoção
+
+melhor caso
+balanceada
+o(log n)
+
+altura log n
