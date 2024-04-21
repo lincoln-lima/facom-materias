@@ -1,6 +1,6 @@
 #include "../include/heap.h"
 
-/* funcoes para encontrar pai e filhos, recebendo como parametro o indice do vetor  */
+/* funções para encontrar pai e filhos, recebendo como parâmetro o índice do vetor  */
 int pai(int n) {
     return (n-1)/2;
 }
@@ -13,7 +13,7 @@ int f_dir(int n) {
     return (n*2)+2;
 }
 
-/* realiza a troca de valores de duas variaveis  */
+/* realiza a troca de valores de duas variáveis  */
 void troca(int *a, int *b) {
     int aux = *a;
     *a = *b;
@@ -48,7 +48,7 @@ void sobe(int v[], int pos) {
     }
 }
 
-/* retorn o maior valor, como no caso da max_heap, está no índice 0 */
+/* retorna o maior valor, como no caso da max_heap, está no índice 0 */
 int acessa_max(int v[]) {
     return v[0];
 }

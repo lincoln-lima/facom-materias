@@ -107,8 +107,7 @@ int remover(thash * hash, char * key) {
 void apaga(thash * hash) {
    //libera posição a posição do array
     for(int pos = 0; pos < hash->max_size; pos++) {
-	if(hash->array[pos] != 0 && hash->array[pos] != hash->deleted)
-            free((void *) hash->array[pos]);
+	if(hash->array[pos] != 0 && hash->array[pos] != hash->deleted) free((void *) hash->array[pos]);
     }
 
    //libera o array

@@ -69,6 +69,10 @@ void teste_altera() {
 }
 
 int main() {
+    teste_constroi();
+    teste_insere();
+    teste_ordena();
+    teste_extrai();
     teste_altera();
 
     return EXIT_SUCCESS;
